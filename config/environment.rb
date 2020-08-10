@@ -2,7 +2,6 @@
 require_relative 'application'
 
 #config.action_mailer.delivery_method = :letter_opener
-config.action_mailer.perform_deliveries = true
 
 ActionMailer::Base.smtp_settings =   {
   :address            => 'smtp.gmail.com',
