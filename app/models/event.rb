@@ -1,8 +1,8 @@
 class Event < ApplicationRecord
   has_many :attendances
-  has_many :users; through: :attendances
+  has_many :users, through: :attendances
 
-  has_many :participant, class_name: "User"
+  has_many :participants, class_name: "User"
   belongs_to :admin, class_name: "User"
 
   validates :duration, presence: true,
@@ -15,7 +15,8 @@ class Event < ApplicationRecord
     length: { in: 20..1000 }
 
   validates :price, presence: true,
-    numericality: { greater_than: 0, :less_than_or_equal_to: 1000 }
+    numericality: { greater_than: 0}
+     #numericality: {less_than_or_equal_to: 1000}
 
   validates :location, presence: true
 

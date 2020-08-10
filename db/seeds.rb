@@ -8,6 +8,8 @@
 
 require 'faker'
 User.delete_all
+Event.delete_all
+Attendance.delete_all
 
 10.times do
   User.create!(
@@ -19,3 +21,27 @@ User.delete_all
 end
 
 puts "10 utilisateurs créés"
+
+3.times do
+  Event.create!(
+    start_date: Faker::Date.between(from: Date.today, to: 1.year.from_now) ,
+    duration: Faker::Number.number(digits: 2),
+    title: Faker::Lorem.sentence(word_count: 3) ,
+    description: Faker::Lorem.paragraphs(number: 1),
+    price: Faker::Number.number(digits: 2),
+    location: Faker::Address.city,
+    admin_id: User.find(rand(User.first.id..User.last.id)).id,
+    participant_id: User.find(rand(User.first.id..User.last.id)).id
+  )
+end
+
+puts "Events created"
+
+3.times do
+  Attendance.create!(stripe_customer_id:"qsjdhqsjd",
+    user_id: User.find(rand(User.first.id..User.last.id)).id,
+    event_id: Event.find(rand(Event.first.id..Event.last.id)).id
+  )
+end
+
+puts "Attendances created"
