@@ -1,1 +1,20 @@
-<h1><% @event.title%></h1>
+
+<div class="text-center max-auto mb-3">
+<h1>Bienvenue sur la page de l'évènement <%= @event.title%> !</h1>
+
+<h4> Ici tu retrouveras toutes les infos à savoir </h4>
+</div>
+<div class="container-fluid mw-50">
+  <div class="card mx-auto text-center  ">
+    <h5 class="card-header"><%= @event.title%></h5>
+    <div class="card-body">
+      <h5 class="card-title"><%= @event.location%></h5>
+      <p class="card-text">Description : <%= @event.description%></p>
+      <p class="card-text">Date : <%= @event.start_date%></p>
+      <p class="card-text">Prix : <%= @event.price %> euros </p>
+      <p class="card-text">Durée : <%= @event.duration %> minutes </p>
+</div>
+
+
+
+</div>
