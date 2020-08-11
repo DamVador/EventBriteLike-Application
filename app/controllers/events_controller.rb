@@ -6,17 +6,22 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.find(params[:id])
   end
 
   def create
-    @event = Event.new(title: params[:title], content: params[:content], user_id: current_user.id) # avec xxx qui sont les données obtenues à partir du formulaire
+    puts "/"*45
+    puts params
+    puts "/"*45
 
-    if @event.save # essaie de sauvegarder en base @gossip
-      render "/"# si ça marche, il redirige vers la page d'index du site
+    @event = Event.new(admin_id: current_user.id, title: params[:title], description: params[:description], start_date: params[:start_date], duration: params[:duration], price: params[:price], location: params[:location]) # avec xxx qui sont les données obtenues à partir du formulaire
+
+    if @event.save
+      redirect_to event_path(Event.last.id)
     else
       render :new
     end
   end
 
-  
+
 end
