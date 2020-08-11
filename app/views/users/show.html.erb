@@ -1,11 +1,30 @@
 
 
-<h1>Voici ton profile <%= @user.first_name%> <%= @user.last_name%> !</h1>
-
-
+<h1 class="text-center mb-4">Voici ton profile <%= @user.first_name%> <%= @user.last_name%> !</h1>
+<div class="col-md-3 col-sm-4 mx-auto">
+<div class="card border-dark mb-3 mx-auto text-center">
 <p> Nom : <%= @user.first_name%> </p>
 <p> Prénom : <%= @user.last_name%> </p>
 <p> Description : <%= @user.description%> </p>
 <p> Email : <%= @user.email%> </p>
+</div>
+</div>
 
-<p>Voici les évènements dont tu est l'administrateur</p>
+<h4 class="text-center mt-5 mb-3">Voici les évènements dont tu es l'administrateur</h4>
+
+<div class="card-deck mt-4">
+
+  <% Event.all.sort.each do |event| %>
+    <% if @user.id ==  event.admin_id %>
+      <div class="col-md-3 col-sm-4">
+        <div class="card border-dark mb-3 mx-auto " style="max-width: 20rem;">
+          <div class="card-header"> <a href="<%=event_path(event.id)%>"> Event n°<%= event.id %></a></div>
+          <div class="card-body">
+            <h4 class="card-title"><%= event.title %></h4>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

@@ -24,9 +24,6 @@
       <li class="nav-item">
         <a class="nav-link" href="/events/new">Créer un évènement</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Autre</a>
-      </li>
     </ul>
     <% if self.user_signed_in? == false %>
     <a class="nav-link" href="/users/sign_up">
@@ -37,7 +34,7 @@
     </a>
     <% else %>
 
-    <%= link_to "Profile", user_path(current_user.id), :class => "btn btn-primary my-2 my-sm-0 mr-2" %>
+    <%= link_to "Profil", user_path(current_user.id), :class => "btn btn-primary my-2 my-sm-0 mr-2" %>
 
     <%= link_to "Deconnexion", destroy_user_session_path, :class => "btn btn-primary my-2 my-sm-0", :method => :delete %>
     <% end %>
@@ -58,8 +55,7 @@
       <div class="col-6 col-md m text-right">
       <ul class="list-unstyled text-small">
           <li><a class="text-muted" href="/">Eventbrite</a></li>
-          <li><a class="text-muted" href="/team">Remplir plus tard</a></li>
-          <li><a class="text-muted" href="/contact">Pareil</a></li>
+          <li><a class="text-muted" href="/events/new">Créer un évènement</a></li>
       </ul>
       </div>
     </div>
