@@ -1,15 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AppEvent</title>
+    <title>Eventbrite</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="../../assets/stylesheets/bootstrap.min.css">
+
   </head>
 
   <body>
-    <%= yield %>
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Eventbrite</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/events/new">Créer un évènement</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Autre</a>
+      </li>
+    </ul>
+    <a class="nav-link" href="/users/sign_up">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Inscription</button>
+    </a>
+    <a class="nav-link" href="/users/sign_in">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Connexion</button>
+    </a>
+  </div>
+</nav>
+
+
+
+ <%= yield %>
+
+ <footer class= "pt-md-3 border-top">
+    <div class="row mx-auto container mt-3">
+      <div class="col-6 col-md ">
+        <h5>Eventbrite</h5>
+      </div>
+
+      <div class="col-6 col-md m text-right">
+      <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="/">Eventbrite</a></li>
+          <li><a class="text-muted" href="/team">Remplir plus tard</a></li>
+          <li><a class="text-muted" href="/contact">Pareil</a></li>
+      </ul>
+      </div>
+    </div>
+  </footer>
   </body>
 </html>
