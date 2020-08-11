@@ -1,2 +1,16 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<h1>Bienvenue sur Eventbrite mon ami(e) !</h1>
+<h4>Si tu veux savoir quand seras la prochaine fête du ricard dans ta ville, c'est par ici que ca se passe !</h4>
+
+<div class="card-deck mt-4">
+
+  <% Event.all.sort.each do |event| %>
+    <div class="col-md-3 col-sm-4">
+      <div class="card border-dark mb-3 mx-auto " style="max-width: 20rem;">
+        <div class="card-header"> <a href="<%=event_path(event.id)%>"> Event n°<%= event.id %></a></div>
+        <div class="card-body">
+          <h4 class="card-title"><%= event.title %></h4>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
