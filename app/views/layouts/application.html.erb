@@ -28,13 +28,8 @@
       </li>
     </ul>
     <% if self.user_signed_in? == false %>
-
-    <a class="nav-link" href="/users/sign_up">
-      <button class="btn btn-secondary my-2 my-sm-0 " type="submit">Inscription</button>
-    </a>
-    <a class="nav-link" href="/users/sign_in">
-      <button class="btn btn-primary my-2 my-sm-0 " type="submit">Connexion</button>
-    </a>
+    <%= link_to "Inscription", new_user_registration_path, :class => "btn btn-primary my-2 my-sm-0 mr-2" %>
+    <%= link_to "Connexion", new_user_session_path, :class => "btn btn-secondary my-2 my-sm-0 mr-2" %>
 
     <% else %>
 
