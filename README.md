@@ -6,4 +6,4 @@ To start the application, you can use :
  - rails server
  - launch localhost:3000
  
- Not working currently with heroku
+ 
