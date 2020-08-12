@@ -14,5 +14,7 @@
       <p class="card-text">Date : <%= @event.start_date%></p>
       <p class="card-text">Prix : <%= @event.price %> euros </p>
       <p class="card-text">Durée : <%= @event.duration %> minutes </p>
+      <p class="card-text">Contact : <%= User.find(@event.admin_id).email %> </p>
+
     </div>
 </div>

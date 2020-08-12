@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+#ruby '2.5.1'
 
 gem 'table_print'
 gem 'activerecord-reset-pk-sequence'
 gem 'faker'
 gem "letter_opener"
 gem 'devise'
+gem 'stripe'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.2'

@@ -16,7 +16,8 @@ Attendance.delete_all
     email: Faker::Internet.username(specifier: 5..8) + "@yopmail.com",
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    description: Faker::Lorem.sentence
+    description: Faker::Lorem.sentence,
+    password: Faker::Number.number(digits: 10)
   )
 end
 
