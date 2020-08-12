@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'attendances/new'
-  get 'attendances/create'
-  get 'attendances/show'
-  get 'attendances/destroy'
+  resources :charges
   devise_for :users
   resources :users
   resources :events
