@@ -9,6 +9,7 @@ gem 'faker'
 gem "letter_opener"
 gem 'devise'
 gem 'stripe'
+gem 'activestorage'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

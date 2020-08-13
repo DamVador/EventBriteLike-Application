@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   after_create :welcome_send
 
+  has_one_attached :image
+
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
