@@ -13,17 +13,25 @@
 <h4></h4>
 </div>
 
-
-<div class="card-deck mt-4">
-
+<div class="row mx-auto">
   <% Event.all.sort.each do |event| %>
-    <div class="col-md-3 col-sm-4">
-      <div class="card border-dark mb-3 mx-auto " style="max-width: 20rem;">
-        <div class="card-header"> <a href="<%=event_path(event.id)%>"> Event n°<%= event.id %></a></div>
-        <div class="card-body">
-          <h4 class="card-title"><%= event.title %></h4>
+      <div class="col-lg-4 col-sm-6 portfolio-item mx-auto mt-3 mb-3">
+        <div class="card h-100">
+          <div class="card-img-top" >
+          <%if event.event_image.attached?%>
+            <%= image_tag event.event_image, alt: 'event_image', class:"bd-placeholder-img card-img-top", :size=>"200x200" %>
+          <%else%>
+            <% event.event_image.attach(io: File.open("app/assets/images/event_pic.jpg"), filename: "event_pic.jpg", content_type: "image/jpg") %>
+            <%= image_tag event.event_image, alt: 'event_image', class:"bd-placeholder-img card-img-top" %>
+          <% end %>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title text-center">
+              <a href="<%=event_path(event.id)%>"> Event n°<%= event.id %></a>
+            </h4>
+            <p class="card-text text-center"><%= event.title %></p>
+          </div>
         </div>
       </div>
-    </div>
   <% end %>
 </div>
