@@ -1,38 +1,37 @@
 
-<div class="text-center max-auto mb-3">
-<h1>Bienvenue sur la page de l'évènement <%= @event.title%> !</h1>
+<div class="row ml-5 text-center mt-5 mb-3">
+      <div class="col-lg-6 mx-auto">
+        <h2>Bienvenue sur la page de l'évènement <%= @event.title%> </h2>
+        <p>Ici tu peux checker les infos:</p>
 
+          <p>
+            <strong>Ville : <%= @event.location%></strong>
+          </p>
+          <p>Contact : <%= User.find(@event.admin_id).email %> </p>
+          <p>Date : <%= @event.start_date%></p>
+          <p>Prix : <%= @event.price %> euros</p>
+          <p>Durée : <%= @event.duration %> minutes </p>
 
-<%if @event.event_image.attached?%>
-  <%= image_tag @event.event_image, alt: 'event_image', :size => "360x480" %>
-<%else%>
-  <% @event.event_image.attach(io: File.open("app/assets/images/event_pic.jpg"), filename: "event_pic.jpg", content_type: "image/jpg") %>
-  <%= image_tag @event.event_image, alt: 'event_image', :size => "360x480" %>
-    <% if current_user.id ==  @event.admin_id%>
-      <h3 class="mb-3">Changer d'image ?</h3>
-      <%= form_tag event_event_images_path(@event), multipart: true do %>
-      <%= file_field_tag :event_image %>
-      <%= submit_tag "mettre à jour" %>
-      <% end %>
-    <%end%>
-<% end %>
-
-<h4> Ici tu retrouveras toutes les infos à savoir </h4>
-</div>
-
-<div class="container-fluid mw-50">
-  <div class="card mx-auto text-center  ">
-    <h5 class="card-header"><%= @event.title%></h5>
-    <div class="card-body">
-      <h5 class="card-title"><%= @event.location%></h5>
-      <p class="card-text">Description : <%= @event.description%></p>
-      <p class="card-text">Date : <%= @event.start_date%></p>
-      <p class="card-text">Prix : <%= @event.price %> euros </p>
-      <p class="card-text">Durée : <%= @event.duration %> minutes </p>
-      <p class="card-text">Contact : <%= User.find(@event.admin_id).email %> </p>
-<% if current_user.id !=  @event.admin_id && Attendance.find_by(event_id:@event.id, user_id:current_user.id) == nil%>
-<%= link_to "S'inscrire à l'évènement", new_charge_path, :class => "btn btn-primary my-2 my-sm-0 mr-2" %>
-<% end %>
-
-    </div>
+        <p><%= @event.description%></p>
+        <p>
+          <% if current_user.id !=  @event.admin_id && Attendance.find_by(event_id:@event.id, user_id:current_user.id) == nil%>
+        <%= link_to "S'inscrire à l'évènement", new_charge_path, :class => "btn btn-primary my-2 my-sm-0 mr-2" %>
+        <% end %>
+      </p>
+      </div>
+      <div class="col-lg-6 mx-auto">
+        <%if @event.event_image.attached?%>
+          <%= image_tag @event.event_image, alt: 'event_image', :size => "360x480" %>
+        <%else%>
+          <% @event.event_image.attach(io: File.open("app/assets/images/event_pic.jpg"), filename: "event_pic.jpg", content_type: "image/jpg") %>
+          <%= image_tag @event.event_image, alt: 'event_image', :size => "360x480" %>
+            <% if current_user.id ==  @event.admin_id%>
+              <h3 class="mb-3">Changer d'image ?</h3>
+              <%= form_tag event_event_images_path(@event), multipart: true do %>
+              <%= file_field_tag :event_image %>
+              <%= submit_tag "mettre à jour" %>
+              <% end %>
+            <%end%>
+        <% end %>
+      </div>
 </div>
