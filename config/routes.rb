@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
-  get 'event_images/create'
-  get 'images/create'
   resources :charges
   devise_for :users
   resources :users, only: [:show] do
     resources :images, only: [:create]
   end
-  resources :events, only: [:show] do
-    resources :event_image, only: [:create]
+  resources :events do
+    resources :event_images, only: [:create]
   end
   resources :attendances
   root :to => "events#index"
