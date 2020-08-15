@@ -24,7 +24,7 @@
           <%= image_tag @event.event_image, alt: 'event_image', :size => "360x480" %>
         <%else%>
           <% @event.event_image.attach(io: File.open("app/assets/images/event_pic.jpg"), filename: "event_pic.jpg", content_type: "image/jpg") %>
-          <%= image_tag @event.event_image, alt: 'event_image', :size => "360x480" %>
+          <%= image_tag @event.event_image, alt: 'event_image', :size => "480x360" %>
             <% if current_user.id ==  @event.admin_id%>
               <h3 class="mb-3">Changer d'image ?</h3>
               <%= form_tag event_event_images_path(@event), multipart: true do %>

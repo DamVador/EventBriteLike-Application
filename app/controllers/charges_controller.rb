@@ -12,6 +12,14 @@ class ChargesController < ApplicationController
     puts "%"*45
     puts params
     @event = Event.find(params[:event_id])
+
+    Attendance.all.each do |attendance|
+      if attendance.user_id== current_user.id
+        flash[:error]="Déjà inscris"
+        redirect_to @event
+      end
+    end
+
     @amount = @event.price
 
     customer = Stripe::Customer.create({
@@ -25,12 +33,13 @@ class ChargesController < ApplicationController
       description: 'Paiement',
       currency: 'eur',
     })
-    flash[:success] = "paiement accepté, vous êtes inscrits"
-    redirect_to root_path
+    Attendance.create!(user_id: current_user.id, event_id: @event.id)
+    flash[:success] = "Inscris avec succès"
+    redirect_to @event
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to event_path(params[:event_id])
+    redirect_to event_path(@event.id)
   end
 
 end
