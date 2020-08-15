@@ -3,6 +3,7 @@ class ChargesController < ApplicationController
   def new
     puts "rrsult ici"
     puts Event.find(params[:event_id]).price
+    @amount = Event.find(params[:event_id]).price
   end
 
 
@@ -10,8 +11,8 @@ class ChargesController < ApplicationController
     # Amount in cents
     puts "%"*45
     puts params
-
-    @amount = Event.find(params[:event_id]).price
+    @event = Event.find(params[:event_id])
+    @amount = @event.price
 
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],
@@ -24,10 +25,12 @@ class ChargesController < ApplicationController
       description: 'Paiement',
       currency: 'eur',
     })
+    flash[:success] = "paiement accepté, vous êtes inscrits"
+    redirect_to root_path
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to new_charge_path
+    redirect_to event_path(params[:event_id])
   end
 
 end

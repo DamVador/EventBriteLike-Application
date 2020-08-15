@@ -21,7 +21,7 @@
           <%if event.event_image.attached?%>
             <%= image_tag event.event_image, alt: 'event_image', class:"bd-placeholder-img card-img-top", :size=>"200x200" %>
           <%else%>
-            <% event.event_image.attach(io: File.open("app/assets/images/event_pic.jpg"), filename: "event_pic.jpg", content_type: "image/jpg") %>
+            <% event.event_image.attach(io: File.open("app/assets/images/event_pic2.jpg"), filename: "event_pic2.jpg", content_type: "image/jpg") %>
             <%= image_tag event.event_image, alt: 'event_image', class:"bd-placeholder-img card-img-top" %>
           <% end %>
           </div>
