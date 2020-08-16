@@ -32,7 +32,7 @@
 
 <h4 class="text-center mt-5 mb-3">Voici les évènements dont tu es l'administrateur</h4>
 
-<% if Event.find(1) == nil %>
+<% if Event.find(1) != nil %>
 <div class="card-deck mt-4">
   <% Event.all.sort.each do |event| %>
     <% if @user.id ==  event.admin_id %>
@@ -47,4 +47,6 @@
     <% end %>
   <% end %>
 </div>
+<% else %>
+  <p> Vous n'avez pas organiser d'évènement pour l'instant</p>
 <% end %>
