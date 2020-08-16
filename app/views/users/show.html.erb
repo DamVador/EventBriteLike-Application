@@ -32,9 +32,8 @@
 
 <h4 class="text-center mt-5 mb-3">Voici les évènements dont tu es l'administrateur</h4>
 
-<div class="card-deck mt-4">
-
 <% if Event.find(1) == nil %>
+<div class="card-deck mt-4">
   <% Event.all.sort.each do |event| %>
     <% if @user.id ==  event.admin_id %>
       <div class="col-md-3 col-sm-4">
@@ -47,6 +46,5 @@
       </div>
     <% end %>
   <% end %>
-<% end %>
-
 </div>
+<% end %>
