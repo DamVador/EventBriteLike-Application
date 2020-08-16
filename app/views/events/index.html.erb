@@ -13,6 +13,7 @@
 <h4></h4>
 </div>
 
+<% if Event.find(1) == nil %>
 <div class="row mx-auto">
   <% Event.all.sort.each do |event| %>
       <div class="col-lg-4 col-sm-6 portfolio-item mx-auto mt-3 mb-3">
@@ -35,3 +36,6 @@
       </div>
   <% end %>
 </div>
+<% else %>
+  <p>Il n'y a pas encore d'évènement</p>
+<% end %>
