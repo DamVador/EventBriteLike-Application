@@ -13,7 +13,7 @@
 <h4></h4>
 </div>
 
-<% if Event.find(1) == nil %>
+<% if Event.all.size == nil %>
   <p>Il n'y a pas encore d'évènement</p>
 <% else %>
 <div class="row mx-auto">
