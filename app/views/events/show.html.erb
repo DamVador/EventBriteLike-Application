@@ -25,13 +25,14 @@
         <%else%>
           <% @event.event_image.attach(io: File.open("app/assets/images/event_pic2.jpg"), filename: "event_pic2.jpg", content_type: "image/jpg") %>
           <%= image_tag @event.event_image, alt: 'event_image', :size => "480x360" %>
-            <% if current_user.id ==  @event.admin_id%>
-              <h3 class="mb-3">Changer d'image ?</h3>
-              <%= form_tag event_event_images_path(@event), multipart: true do %>
-              <%= file_field_tag :event_image %>
-              <%= submit_tag "mettre à jour" %>
-              <% end %>
-            <%end%>
+
         <% end %>
+        <% if current_user.id ==  @event.admin_id%>
+          <h3 class="mb-3">Changer d'image ?</h3>
+          <%= form_tag event_event_images_path(@event), multipart: true do %>
+          <%= file_field_tag :event_image %>
+          <%= submit_tag "mettre à jour" %>
+          <% end %>
+        <%end%>
       </div>
 </div>
