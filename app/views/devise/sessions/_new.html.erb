@@ -5,34 +5,37 @@
   </head>
   <body>
 
-  <div class="container mx-auto text-center w-25 p-3 mt-5">
-    <form>
-      <fieldset>
-        <legend>Connectez-vous</legend>
-        <div class="form-group">
-          <label for="email"> Addresse Email</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entez votre email">
-        </div>
-        <div class="form-group">
-          <label for="password">Mot de passe</label>
-          <input type="password" class="form-control" id="password" placeholder="Mot de passe">
+
+    <div class="fluid-container text-center mx-auto mt-3 mb-3">
+
+      <h2>Connectez-vous</h2>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field mb-2">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", :size => 35 %>
         </div>
 
-        <fieldset class="form-group">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" checked="">
-            Se souvenir de moi
-          </label>
+        <div class="field mb-2">
+          <%= f.label :Mot_de_passe %><br />
+          <%= f.password_field :Mot_de_passe, autocomplete: "Mot de passe", :size => 35 %>
         </div>
-         <a href="#">Mot de passe oublié ?</a>
-      </fieldset>
 
-        <fieldset class="form-group">
-        <button type="submit" class="btn btn-success">Connexion</button>
-      </fieldset>
-    </form>
-  </div>
+          <% if devise_mapping.rememberable? %>
+            <div class="field mb-2">
+              <%= f.check_box :remember_me %>
+              <%= f.label :se_souvenir_de_moi %>
+            </div>
+          <% end %>
+
+          <%= render "devise/shared/links" %>
+
+          <div class="actions mt-2  mb-2">
+            <%= f.submit "Connexion", :class => "btn btn-success" %>
+          </div>
+      <% end %>
+
+    </div>
 
   </body>
 </html>

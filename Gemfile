@@ -10,6 +10,7 @@ gem "letter_opener"
 gem 'devise'
 gem 'stripe'
 gem 'activestorage'
+gem "bootstrap_form", "~> 4.0"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
