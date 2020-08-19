@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Page Evenement</title>
+    <link rel="stylesheet" href="../../assets/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/stylesheets/style.css">
+  </head>
+
+  <body>
+    <div class="container-event col w-75 mx-auto mt-5" style="background-color: #EFEFEF;">
+
+      <div class="event-haut row">
+
+
+
+          <div class="col-8 mx-auto">
+            <%if @event.event_image.attached?%>
+              <%= image_tag @event.event_image, alt: 'event_image', :size => "480x360" %>
+            <%else%>
+              <% @event.event_image.attach(io: File.open("app/assets/images/event_pic2.jpg"), filename: "event_pic2.jpg", content_type: "image/jpg") %>
+              <%= image_tag @event.event_image, alt: 'event_image', :size => "480x360" %>
+
+            <% end %>
+            <% if current_user.id ==  @event.admin_id%>
+              <h3 class="mb-3">Changer d'image ?</h3>
+              <%= form_tag event_event_images_path(@event), multipart: true do %>
+              <%= file_field_tag :event_image %>
+              <%= submit_tag "mettre à jour" %>
+              <% end %>
+            <%end%>
+          </div>
+
+        <div class="event-text mt-5 col-4">
+          <p><%= @event.start_date%></p>
+          <h3><%= @event.title%></h3>
+          <small>par <%= User.find(@event.admin_id).first_name %> <%= User.find(@event.admin_id).last_name %></small>
+          <p class="price"> <%=@event.price %> euros </p>
+        </div>
+    </div>
+
+    <div class="line text-right row-1">
+      <hr>
+      <% if current_user.id !=  @event.admin_id && Attendance.find_by(event_id:@event.id, user_id:current_user.id) == nil%>
+        <%= link_to "S'inscrire à l'évènement", new_event_charge_path(@event), :class => "btn btn-primary my-2 my-sm-0 mr-2" %>
+      <% elsif current_user.id ==  @event.admin_id%>
+      <%= link_to "Vous êtes administrateur", new_event_charge_path(@event), :class => "btn btn-secondary my-2 my-sm-0 mr-2" %>
+      <% end %>
+      <hr>
+    </div>
+
+    <div class="body-event row">
+      <div class="description col-8">
+        <h3>A propos de cet évènement</h3>
+        <p><%= @event.description%></p>
+      </div>
+
+      <div class="info-annex col-4">
+        <h5>Date et heure</h5>
+        <p><%= @event.start_date%>
+        13:00 - 15:30</p>
+
+        <h5>Endroit</h5>
+        <p><%= @event.location%></p>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div class="bottom-event text-center">
+        <a href="#"><%= User.find(@event.admin_id).email %></a>
+        <p><%= @event.title%></p>
+
+        <fieldset class="form-group mt-1 mb-3 ">
+          <button type="submit" class="btn btn-outline-info mb-3">  S'abonner </button>
+        </fieldset>
+
+
+    </div>
+
+
+
+    </div>
+
+
+
+  </body>
+
+</html>
