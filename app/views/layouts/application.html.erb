@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
     <title>Eventbrite</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,51 +14,9 @@
 
   <body>
 
+    <%= render "layouts/header" %>
+    <%= yield %>
+    <%=  render "layouts/footer" %>
 
-
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">Eventbrite</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/events/new">Créer un évènement</a>
-      </li>
-    </ul>
-    <% if self.user_signed_in? == false %>
-    <%= link_to "Inscription", new_user_registration_path, :class => "btn btn-primary my-2 my-sm-0 mr-2" %>
-    <%= link_to "Connexion", new_user_session_path, :class => "btn btn-secondary my-2 my-sm-0 mr-2" %>
-
-    <% else %>
-
-    <%= link_to "Profil", user_path(current_user.id), :class => "btn btn-primary my-2 my-sm-0 mr-2" %>
-
-    <%= link_to "Deconnexion", destroy_user_session_path, :class => "btn btn-primary my-2 my-sm-0", :method => :delete %>
-    <% end %>
-
-  </div>
-</nav>
-
-
-
- <%= yield %>
-
- <footer class= " pt-md-3 border-top">
-    <div class="row mx-auto container mt-3">
-      <div class="col-6 col-md ">
-        <h5>Eventbrite</h5>
-      </div>
-
-      <div class="col-6 col-md m text-right">
-      <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="/">Eventbrite</a></li>
-          <li><a class="text-muted" href="/events/new">Créer un évènement</a></li>
-      </ul>
-      </div>
-    </div>
-  </footer>
   </body>
 </html>
