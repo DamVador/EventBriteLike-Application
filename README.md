@@ -1,5 +1,3 @@
-![app](https://www.flaticon.com/premium-icon/icons/svg/3264/3264575.svg)
-
 # Event application
 
 The goal of this exercise was to make a website in which it is possible to create, and participate to events. It has been inspired from EventBrite.com
